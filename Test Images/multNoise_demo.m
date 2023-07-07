@@ -1,0 +1,17 @@
+disc = imread('cameraman.png');
+disc = double(disc);
+rng(10); %fix seed across all runs
+a=25; %gamma noise with mean 1, standard deviation 0.2. 
+GamNoise=gamrnd(a,1/a,size(disc));
+F_data = (disc+40).*GamNoise;
+
+F_data_shift = (disc-3).*GamNoise;
+
+figure()
+hold on;
+plot(x,disc(125,:)+40,'b-','LineWidth',2)
+plot(x, F_data(125,:),'b-.')
+
+plot(x, disc(125,:)-3,'r-','LineWidth',2)
+plot(x,F_data_shift(125,:),'r-.','LineWidth',1)
+
